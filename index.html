@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineVault — Discover Movies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="dark">
+
+  <!-- CURSOR SPOTLIGHT -->
+  <div class="cursor-spotlight" id="cursorSpotlight"></div>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" title="Back to top">↑</button>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="brand-icon">🎬</span>
+      <span class="brand-name" id="brandName">CineVault</span>
+    </div>
+    <div class="nav-right">
+      <button class="nav-btn" id="watchlistNavBtn" title="My Watchlist">
+        🎯 <span class="nav-btn-label">Watchlist</span> <span class="wl-badge" id="wlBadge">0</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <span class="theme-icon">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="poster-reel" id="posterReel"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Every Frame<br/><span class="gold" id="typewriterEl"></span><span class="typewriter-cursor"></span></h1>
+      <p class="hero-sub">Search 500,000+ movies. Discover your next obsession.</p>
+
+      <!-- SEARCH -->
+      <div class="search-wrapper" id="searchWrapper">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search movies, directors, genres..."
+          autocomplete="off"
+        />
+        <!-- SUGGESTIONS DROPDOWN -->
+        <div class="suggestions-dropdown" id="suggestionsDropdown"></div>
+      </div>
+
+      <div class="trending-tags">
+        <span class="tag-label">Trending:</span>
+        <button class="tag" data-query="Avengers">Avengers</button>
+        <button class="tag" data-query="Inception">Inception</button>
+        <button class="tag" data-query="Interstellar">Interstellar</button>
+        <button class="tag" data-query="Batman">Batman</button>
+        <button class="tag" data-query="Spider-Man">Spider-Man</button>
+        <button class="tag" data-query="Dune">Dune</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- POPULAR STRIP — now OUTSIDE hero, full-width, fully visible -->
+  <section class="popular-section" id="popularSection">
+    <div class="popular-header">
+      <h2 class="section-title">🔥 Now Popular</h2>
+      <div class="strip-arrows">
+        <button class="strip-arrow" id="stripLeft">‹</button>
+        <button class="strip-arrow" id="stripRight">›</button>
+      </div>
+    </div>
+    <div class="popular-strip-wrap">
+      <div class="popular-strip" id="popularStrip"></div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-container">
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+      <button class="tab active" id="tabSearch" data-tab="search">🔍 Search Results</button>
+      <button class="tab" id="tabWatchlist" data-tab="watchlist">🎯 Watchlist <span class="wl-badge-tab" id="wlBadgeTab">0</span></button>
+      <div class="view-toggle">
+        <button class="view-btn active" id="viewGrid" title="Grid view">⊞</button>
+        <button class="view-btn" id="viewList" title="List view">☰</button>
+      </div>
+    </div>
+
+    <!-- FILTER BAR — enhanced with more filters -->
+    <div class="filter-bar" id="filterBar">
+      <select class="filter-select" id="filterGenre">
+        <option value="">🎭 All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Horror">Horror</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Romance">Romance</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Animation">Animation</option>
+        <option value="Documentary">Documentary</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Crime">Crime</option>
+        <option value="Biography">Biography</option>
+      </select>
+
+      <select class="filter-select" id="filterYear">
+        <option value="">📅 All Years</option>
+        <option value="2020s">2020s</option>
+        <option value="2010s">2010s</option>
+        <option value="2000s">2000s</option>
+        <option value="1990s">1990s</option>
+        <option value="older">Before 1990</option>
+      </select>
+
+      <select class="filter-select" id="filterLanguage">
+        <option value="">🌐 All Languages</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Spanish">Spanish</option>
+        <option value="French">French</option>
+        <option value="Korean">Korean</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Italian">Italian</option>
+        <option value="German">German</option>
+        <option value="Tamil">Tamil</option>
+        <option value="Malayalam">Malayalam</option>
+      </select>
+
+      <select class="filter-select" id="filterRating">
+        <option value="">⭐ Any Rating</option>
+        <option value="9">9+ Masterpiece</option>
+        <option value="8">8+ Excellent</option>
+        <option value="7">7+ Great</option>
+        <option value="6">6+ Good</option>
+        <option value="5">5+ Average</option>
+      </select>
+
+      <select class="filter-select" id="filterSort">
+        <option value="">🏆 Sort By</option>
+        <option value="rating_desc">Rating: High to Low</option>
+        <option value="rating_asc">Rating: Low to High</option>
+        <option value="year_desc">Newest First</option>
+        <option value="year_asc">Oldest First</option>
+        <option value="title_asc">Title: A–Z</option>
+        <option value="title_desc">Title: Z–A</option>
+      </select>
+
+      <button class="filter-clear" id="filterClear">✕ Clear</button>
+    </div>
+
+    <!-- ACTIVE FILTER CHIPS -->
+    <div class="filter-chips" id="filterChips"></div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar" id="statusBar">
+      <span id="statusText">✨ Search above or explore popular movies below</span>
+      <span id="resultCount" class="result-count"></span>
+    </div>
+
+    <!-- MOVIE GRID -->
+    <section class="movies-grid" id="moviesGrid"></section>
+
+    <!-- SKELETON LOADER -->
+    <section class="skeleton-grid" id="skeletonGrid" style="display:none;"></section>
+
+    <!-- LOAD MORE -->
+    <div class="load-more-wrapper" id="loadMoreWrapper" style="display:none;">
+      <button class="load-more-btn" id="loadMoreBtn">
+        <span>Load More</span>
+        <span class="btn-arrow">↓</span>
+      </button>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-icon">🎭</div>
+      <h3>No movies found</h3>
+      <p>Try a different title or keyword</p>
+    </div>
+
+    <!-- WATCHLIST EMPTY -->
+    <div class="empty-state" id="watchlistEmpty" style="display:none;">
+      <div class="empty-icon">🎯</div>
+      <h3>Your watchlist is empty</h3>
+      <p>Click the bookmark icon on any movie to save it here</p>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="error-state" id="errorState" style="display:none;">
+      <div class="error-icon">⚠️</div>
+      <h3 id="errorTitle">Something went wrong</h3>
+      <p id="errorMsg">Please try again.</p>
+    </div>
+
+  </main>
+
+  <!-- MOVIE DETAIL MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="movieModal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-inner" id="modalInner"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Built with ❤️ by <strong>Suneer</strong> · Powered by <a href="https://www.omdbapi.com" target="_blank">OMDB API</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
