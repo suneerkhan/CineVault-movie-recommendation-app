@@ -6,7 +6,7 @@ A sleek, cinema-themed movie discovery web app built with vanilla HTML, CSS, and
 
 ## 🌐 Live Demo
 
-[View on GitHub Pages](https://suneerkhan.github.io/CIneVault-movie-recommendation-app/)
+[View on GitHub Pages](https://suneerkhan.github.io/CineVault-movie-recommendation-app/)
 
 
 ---
