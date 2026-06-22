@@ -1,6 +1,6 @@
 # 🎬 CineVault — Movie Discovery App
 
-A sleek, cinema-themed movie discovery web app built with vanilla HTML, CSS, and JavaScript. Search 500,000+ movies, manage your watchlist, and explore popular titles — all powered by the OMDB API.
+A sleek, cinema-themed movie discovery web app built with vanilla HTML, CSS, and JavaScript. Search 500,000+ movies, manage your watchlist, and explore popular titles 
 
 ---
 
